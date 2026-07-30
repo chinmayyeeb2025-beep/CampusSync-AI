@@ -314,7 +314,7 @@ CampusSync-AI/
 
 ⬜ Google Classroom MCP
 
-⬜ "Suggest Another Plan" Feature
+
 
 ---
 
