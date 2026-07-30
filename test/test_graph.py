@@ -2,7 +2,7 @@ from graph import graph
 
 initial_state = {
     "registration_no": "24BAI1127",
-    "mode": "day_with_timings",
+    "mode": "day_without_timings",
     "timetable": [],
     "assignments": [],
     "classroom_tasks": [],

@@ -1,75 +1,48 @@
-from models.task import Task
-from state import PlannerState
-from models.timetable import Lecture
+from config import TIMETABLE_DIR, LMS_DIR
 
-def academic_agent(state: PlannerState) -> PlannerState:
+from utils.doc_loader import read_docx
+
+from extractors.timetable_extractor import extract_timetable
+from extractors.task_extractor import extract_tasks
+from datetime import datetime
+
+
+def academic_agent(state):
 
     print("\n========== Academic Agent ==========")
 
-    state["timetable"] = [
+    reg_no = state["registration_no"]
 
-    Lecture(
-        day="Monday",
-        start_time="08:00",
-        end_time="08:50",
-        subject="Machine Learning",
-    ),
+    # ---------- Timetable ----------
 
-    Lecture(
-        day="Monday",
-        start_time="09:00",
-        end_time="09:50",
-        subject="Python for AI",
-    ),
+    timetable_path = TIMETABLE_DIR / f"{reg_no}.docx"
 
-    Lecture(
-        day="Monday",
-        start_time="10:00",
-        end_time="10:50",
-        subject="Data Mining",
-    ),
+    timetable_text = read_docx(timetable_path)
 
-    Lecture(
-        day="Monday",
-        start_time="11:00",
-        end_time="11:50",
-        subject="Linear Algebra",
-    ),
+    lectures = extract_timetable(timetable_text)
 
-    Lecture(
-        day="Monday",
-        start_time="14:00",
-        end_time="14:50",
-        subject="Deep Learning",
-    ),
+    # ---------- LMS ----------
 
-    Lecture(
-        day="Monday",
-        start_time="15:00",
-        end_time="15:50",
-        subject="Natural Language Processing",
-    ),
-]
+    lms_path = LMS_DIR / f"{reg_no}.docx"
 
-    state["assignments"] = [
+    lms_text = read_docx(lms_path)
 
-    Task(
-        title="Machine Learning Assignment",
-        subject="Machine Learning",
-        platform="MS Teams",
-        deadline="Today",
-        description="Complete and submit Assignment 1.",
-    ),
+    tasks = extract_tasks(
+        lms_text,
+        platform="LMS"
+    )
+    today = datetime.today()
 
-    Task(
-        title="Python Lab Record",
-        subject="Python for AI",
-        platform="LMS",
-        deadline="Tomorrow",
-        description="Complete Lab Experiment 5.",
-    ),
-    ]
+    for task in tasks:
+        try:
+            deadline = datetime.strptime(task.deadline, "%d %B %Y")
+            task.days_remaining = (deadline - today).days
+        except:
+            task.days_remaining = 999
+            
+    state["timetable"] = lectures
+    state["assignments"] = tasks
 
-    print("Academic data loaded.")
+    print("Academic data loaded successfully.")
 
     return state

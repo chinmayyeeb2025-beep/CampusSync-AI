@@ -2,8 +2,9 @@ from pydantic import BaseModel
 
 
 class Task(BaseModel):
-    title: str
     subject: str
+    task_type: str
     platform: str
     deadline: str
-    description: str = ""
+    work: str
+    days_remaining: int = 0

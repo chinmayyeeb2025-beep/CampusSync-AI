@@ -1,20 +1,11 @@
 from pathlib import Path
 
-from langchain_community.document_loaders import DirectoryLoader
-from langchain_community.document_loaders import Docx2txtLoader
+from utils.doc_loader import read_docx
 
-DOCUMENTS_DIR = Path("data/docs")
-
-loader = DirectoryLoader(
-    DOCUMENTS_DIR,
-    glob="*.docx",
-    loader_cls=Docx2txtLoader,
+text = read_docx(
+    Path("data/documents/24BME1001.docx")
 )
 
-documents = loader.load()
+print("\n========== DOCUMENT ==========\n")
 
-print(f"\nLoaded {len(documents)} document(s)\n")
-
-print("=" * 80)
-print(documents[0].page_content)
-print("=" * 80)
+print(text)
