@@ -2,6 +2,7 @@ from typing import TypedDict
 
 from models.task import Task
 from models.study_plan import StudyPlan
+from models.timetable import Lecture
 
 
 class PlannerState(TypedDict):
@@ -10,7 +11,7 @@ class PlannerState(TypedDict):
 
     mode: str
 
-    timetable: str
+    timetable: list[Lecture]
 
     assignments: list[Task]
 

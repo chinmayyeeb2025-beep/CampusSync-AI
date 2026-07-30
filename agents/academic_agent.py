@@ -1,20 +1,55 @@
 from models.task import Task
 from state import PlannerState
-
+from models.timetable import Lecture
 
 def academic_agent(state: PlannerState) -> PlannerState:
 
     print("\n========== Academic Agent ==========")
 
-    state["timetable"] = """
-Monday:
-8:00-8:50 Machine Learning
-9:00-9:50 Python for AI
-10:00-10:50 Data Mining
-11:00-11:50 Linear Algebra
-2:00-2:50 Deep Learning
-3:00-3:50 NLP
-"""
+    state["timetable"] = [
+
+    Lecture(
+        day="Monday",
+        start_time="08:00",
+        end_time="08:50",
+        subject="Machine Learning",
+    ),
+
+    Lecture(
+        day="Monday",
+        start_time="09:00",
+        end_time="09:50",
+        subject="Python for AI",
+    ),
+
+    Lecture(
+        day="Monday",
+        start_time="10:00",
+        end_time="10:50",
+        subject="Data Mining",
+    ),
+
+    Lecture(
+        day="Monday",
+        start_time="11:00",
+        end_time="11:50",
+        subject="Linear Algebra",
+    ),
+
+    Lecture(
+        day="Monday",
+        start_time="14:00",
+        end_time="14:50",
+        subject="Deep Learning",
+    ),
+
+    Lecture(
+        day="Monday",
+        start_time="15:00",
+        end_time="15:50",
+        subject="Natural Language Processing",
+    ),
+]
 
     state["assignments"] = [
 
