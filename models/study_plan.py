@@ -1,9 +1,23 @@
 from pydantic import BaseModel
 
-from models.task import Task
+
+class PlannedTask(BaseModel):
+
+    title: str
+
+    subject: str
+
+    slot: str
+
+    reason: str
 
 
 class StudyPlan(BaseModel):
+
     registration_no: str
+
     mode: str
-    tasks: list[Task]
+
+    strategy: str
+
+    tasks: list[PlannedTask]

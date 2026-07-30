@@ -8,14 +8,14 @@ def classroom_agent(state: PlannerState) -> PlannerState:
 
     state["classroom_tasks"] = [
 
-        Task(
-            title="Deep Learning Quiz",
-            platform="Google Classroom",
-            deadline="Friday",
-            priority="Medium",
-            estimated_duration=1,
-        )
-    ]
+    Task(
+        title="Deep Learning Quiz",
+        subject="Deep Learning",
+        platform="Google Classroom",
+        deadline="Friday",
+        description="Prepare for Quiz 2.",
+    )
+]
 
     print("Google Classroom data loaded.")
 

@@ -1,4 +1,4 @@
-from models.study_plan import StudyPlan
+from scheduler.planner import generate_plan
 from state import PlannerState
 
 
@@ -6,18 +6,14 @@ def scheduling_agent(state: PlannerState) -> PlannerState:
 
     print("\n========== Scheduling Agent ==========")
 
-    all_tasks = []
-
-    all_tasks.extend(state["assignments"])
-
-    all_tasks.extend(state["classroom_tasks"])
-
-    state["study_plan"] = StudyPlan(
+    state["study_plan"] = generate_plan(
         registration_no=state["registration_no"],
         mode=state["mode"],
-        tasks=all_tasks,
+        assignments=state["assignments"],
+        classroom_tasks=state["classroom_tasks"],
+        timetable=state["timetable"],
     )
 
-    print(f"Generated plan with {len(all_tasks)} task(s).")
+    print("Study plan generated.")
 
     return state

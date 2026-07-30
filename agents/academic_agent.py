@@ -18,21 +18,21 @@ Monday:
 
     state["assignments"] = [
 
-        Task(
-            title="Machine Learning Assignment",
-            platform="MS Teams",
-            deadline="Today",
-            priority="High",
-            estimated_duration=2,
-        ),
+    Task(
+        title="Machine Learning Assignment",
+        subject="Machine Learning",
+        platform="MS Teams",
+        deadline="Today",
+        description="Complete and submit Assignment 1.",
+    ),
 
-        Task(
-            title="Python Lab Record",
-            platform="LMS",
-            deadline="Tomorrow",
-            priority="Medium",
-            estimated_duration=1,
-        ),
+    Task(
+        title="Python Lab Record",
+        subject="Python for AI",
+        platform="LMS",
+        deadline="Tomorrow",
+        description="Complete Lab Experiment 5.",
+    ),
     ]
 
     print("Academic data loaded.")
