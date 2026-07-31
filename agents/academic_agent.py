@@ -10,6 +10,7 @@ from datetime import datetime
 def academic_agent(state):
 
     print("\n========== Academic Agent ==========")
+    print(state)
 
     reg_no = state["registration_no"]
 
